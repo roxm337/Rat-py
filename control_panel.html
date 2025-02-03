@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAT Control Panel</title>
+</head>
+<body>
+    <h1>RAT Control Panel</h1>
+    <input type="text" id="clientId" placeholder="Client ID">
+    <input type="text" id="command" placeholder="Command">
+    <button id="sendCommand">Send Command</button>
+    <h2>Responses</h2>
+    <pre id="responses"></pre>
+
+    <script>
+        document.getElementById("sendCommand").addEventListener("click", function () {
+            const clientId = document.getElementById("clientId").value;
+            const command = document.getElementById("command").value;
+            fetch("/command", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ client_id: clientId, command: command }),
+            })
+                .then((response) => response.json())
+                .then((data) => alert(data.status));
+        });
+
+        setInterval(() => {
+            const clientId = document.getElementById("clientId").value;
+            fetch(`/get_responses?client_id=${clientId}`)
+                .then((response) => response.json())
+                .then((data) => {
+                    document.getElementById("responses").textContent = data.responses.join("\n");
+                });
+        }, 5000);
+    </script>
+</body>
+</html>
