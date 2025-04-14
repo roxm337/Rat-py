@@ -23,14 +23,14 @@ This project is a Python-based Remote Administration Tool (RAT) developed **stri
 ---
 
 ## 📁 File Structure
-
+```
 ├── main.py              # Flask-based C2 server
 ├── templates/
 │   └── control_panel.html # HTML page for the control panel
 ├── client.py              # Client agent script
 ├── uploads/               # Folder to store uploaded data
 └── README.md              # This file
-
+```
 
 ---
 
@@ -52,6 +52,7 @@ Access control panel in your browser:
 
 🔹 Client
 Install dependencies:
+
 ```pip install requests pynput cryptography pyautogui```
 
 Edit the client:
@@ -69,6 +70,7 @@ Only basic authentication is implemented — add secure authentication for produ
 👨‍💻 Author
 
 Created by @r10xM37
+
 For security education and ethical hacking labs.
 
 
